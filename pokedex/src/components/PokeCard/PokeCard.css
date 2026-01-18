@@ -71,6 +71,15 @@
         0 10px 40px rgba(0, 0, 0, 0.5),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     overflow: hidden;
+    transition: border-color 0.5s ease;
+}
+
+.pokecard-frame.shiny-mode {
+    border-color: #FFD700;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(255, 215, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* Frame Top Bar */
@@ -137,6 +146,7 @@
     padding: 20px;
     border: 3px solid #1e3a5f;
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+    min-height: 500px; /* Ensure consistent height when switching tabs */
 }
 
 /* Screen Header */
@@ -147,6 +157,7 @@
     margin-bottom: 20px;
     padding-bottom: 15px;
     border-bottom: 2px solid rgba(100, 255, 218, 0.3);
+    flex-wrap: wrap;
 }
 
 .poke-number {
@@ -166,6 +177,58 @@
     text-transform: capitalize;
     margin: 0;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.shiny-icon {
+    font-size: 1.5rem;
+    animation: sparkle 1.5s infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+.header-controls {
+    display: flex;
+    gap: 10px;
+}
+
+/* Toggle Buttons */
+.shiny-toggle-btn, .mode-toggle-btn {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.shiny-toggle-btn:hover, .mode-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.shiny-toggle-btn.active {
+    background: linear-gradient(135deg, #FFD700, #FFA000);
+    border-color: #FFD700;
+    color: #3e2723;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.mode-toggle-btn.active {
+    background: linear-gradient(135deg, #00c853, #00e676);
+    border-color: #00e676;
+    color: #003300;
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.5);
 }
 
 /* Image Section */
@@ -186,6 +249,12 @@
     border: 3px solid rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.image-frame.shiny-frame {
+    border-color: #FFD700;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
 }
 
 .image-frame::before {
@@ -194,6 +263,25 @@
     inset: 0;
     border-radius: 50%;
     background: radial-gradient(circle, transparent 60%, rgba(0, 0, 0, 0.3));
+}
+
+.shiny-sparkles {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(white 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    opacity: 0.3;
+    animation: twinkle 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 0.1; }
 }
 
 .poke-image {
@@ -338,54 +426,255 @@
     padding: 15px;
     margin-bottom: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.desc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.version-badge {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.75rem;
+    color: var(--pokedex-dark);
+    background: var(--highlight);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.next-entry-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    padding: 2px 10px;
+    font-size: 0.7rem;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.next-entry-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-color: white;
 }
 
 .poke-description {
     font-family: 'Rajdhani', sans-serif;
     font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
     margin: 0;
-    text-align: center;
     font-style: italic;
+    flex-grow: 1;
 }
 
-/* Abilities Panel */
-.abilities-panel {
-    background: rgba(0, 0, 0, 0.3);
+/* --- MAP / LOCATION VIEW STYLES --- */
+
+.location-view-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 400px;
+    background: 
+        linear-gradient(rgba(10, 22, 40, 0.9), rgba(10, 22, 40, 0.9)),
+        repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(100, 255, 218, 0.1) 20px),
+        repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(100, 255, 218, 0.1) 20px);
+    background-size: 100% 100%, 20px 20px, 20px 20px;
     border-radius: 10px;
     padding: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(100, 255, 218, 0.2);
 }
 
-.abilities-list {
+.gps-header {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    border-bottom: 2px dashed rgba(100, 255, 218, 0.3);
+    padding-bottom: 10px;
 }
 
-.ability-badge {
+.radar-animation {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--highlight);
+    position: relative;
+    overflow: hidden;
+    background: rgba(0, 20, 0, 0.5);
+}
+
+.radar-sweep {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--highlight), transparent);
+    transform-origin: left center;
+    animation: radar-spin 2s linear infinite;
+}
+
+@keyframes radar-spin {
+    to { transform: rotate(360deg); }
+}
+
+.gps-status {
+    display: flex;
+    flex-direction: column;
+}
+
+.gps-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    color: var(--highlight);
+    letter-spacing: 1px;
+}
+
+.gps-coords {
     font-family: 'Rajdhani', sans-serif;
-    font-weight: 500;
-    padding: 8px 16px;
-    background: linear-gradient(135deg, #6a1b9a, #4a148c);
-    border-radius: 8px;
-    color: white;
-    text-transform: capitalize;
-    font-size: 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: monospace;
 }
 
-.ability-badge.hidden-ability {
-    background: linear-gradient(135deg, #1a237e, #0d47a1);
+.location-list-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Scrollbar for location list */
+.location-list-container::-webkit-scrollbar {
+    width: 6px;
+}
+.location-list-container::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.3);
+}
+.location-list-container::-webkit-scrollbar-thumb {
+    background: var(--highlight);
+    border-radius: 3px;
+}
+
+.location-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.location-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    transition: all 0.2s ease;
+}
+
+.location-item:hover {
+    background: rgba(100, 255, 218, 0.1);
     border-color: var(--highlight);
 }
 
-.ability-badge small {
-    font-size: 0.7rem;
-    opacity: 0.8;
+.location-marker {
+    font-size: 1.2rem;
 }
+
+.location-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.location-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.version-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.version-tag {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+}
+
+.version-tag.more {
+    background: var(--highlight);
+    color: black;
+    font-weight: bold;
+}
+
+.no-locations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    opacity: 0.7;
+    padding: 20px;
+}
+
+.unknown-icon {
+    font-size: 3rem;
+    color: var(--pokedex-red);
+    border: 3px solid var(--pokedex-red);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.map-footer-deco {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(100, 255, 218, 0.5);
+}
+
+.deco-line {
+    flex-grow: 1;
+    height: 1px;
+    background: rgba(100, 255, 218, 0.3);
+}
+
+/* --- END MAP STYLES --- */
 
 /* Bottom Controls */
 .frame-bottom {
@@ -455,6 +744,10 @@
 
     .poke-name {
         font-size: 1.4rem;
+    }
+    
+    .screen-header {
+        flex-wrap: wrap;
     }
 
     .image-frame {

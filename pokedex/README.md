@@ -1,16 +1,49 @@
-# React + Vite
+# 📱 Pokédex - Gen 5 / Unova Style
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una aplicación de Pokédex moderna y responsiva construida con **React** y **Vite**, inspirada en la estética tecnológica de la 5ª Generación (Región de Unova/Teselia).
 
-Currently, two official plugins are available:
+![Pokedex Preview](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/494.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Características Principales
 
-## React Compiler
+- **🔍 Búsqueda Instantánea**: Filtra entre los más de 1000 Pokémon por nombre o número de ID en tiempo real.
+- **✨ Modo Shiny**: ¡Descubre las versiones variocolor! Interruptor interactivo en la tarjeta de cada Pokémon para alternar entre su forma Normal y Shiny.
+- **⚔️ Gestión de Equipo**: Construye tu equipo de ensueño de 6 Pokémon. Los datos se guardan automáticamente.
+- **🗺️ Mapa Regional**: Explora información sobre las diferentes regiones del mundo Pokémon, desde Kanto hasta Paldea.
+- **🎨 UI Temática**: Interfaz de usuario inmersiva con efectos holográficos, sonidos visuales y paleta de colores oscura estilo "Tech".
+- **📱 Totalmente Responsivo**: Diseño optimizado para funcionar perfectamente en móviles, tablets y escritorio.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tecnologías
 
-## Expanding the ESLint configuration
+- **React 19**: Biblioteca principal de UI.
+- **React Router**: Para la navegación SPA (Single Page Application).
+- **CSS3**: Variables CSS, Flexbox, Grid y animaciones personalizadas.
+- **Context API**: Para la gestión del estado global del equipo Pokémon.
+- **PokeAPI**: Fuente de datos para obtener información de los Pokémon.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Instalación y Uso
+
+1. **Clonar el repositorio**
+   ```bash
+   git clone <tu-repositorio-url>
+   cd pokedex
+   ```
+
+2. **Instalar dependencias**
+   ```bash
+   npm install
+   ```
+
+3. **Iniciar servidor de desarrollo**
+   ```bash
+   npm run dev
+   ```
+
+## 📝 Estructura del Proyecto
+
+- `/src/components`: Componentes modulares (PokeCard, MyTeam, RegionMap).
+- `/src/context`: Gestión de estado global (TeamContext).
+- `/src/styles`: Temas y variables CSS globales.
+
+---
+Desarrollado con ❤️ usando React.
