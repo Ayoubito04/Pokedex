@@ -39,6 +39,21 @@ Una aplicación de Pokédex moderna y responsiva construida con **React** y **Vi
    npm run dev
    ```
 
+## ☁️ Despliegue en Vercel
+
+Este proyecto está optimizado para desplegarse en Vercel.
+
+1. Sube tu código a GitHub.
+2. Ve a [Vercel.com](https://vercel.com) e inicia sesión.
+3. Haz clic en **"Add New..."** -> **"Project"**.
+4. Importa tu repositorio de GitHub.
+5. **IMPORTANTE**: En la configuración del proyecto ("Build & Development Settings"):
+   - **Root Directory**: Haz clic en "Edit" y selecciona la carpeta `pokedex`.
+   - **Framework Preset**: Vercel debería detectar "Vite" automáticamente.
+6. Haz clic en **Deploy**.
+
+¡Tu Pokédex estará online en segundos!
+
 ## 📝 Estructura del Proyecto
 
 - `/src/components`: Componentes modulares (PokeCard, MyTeam, RegionMap).
