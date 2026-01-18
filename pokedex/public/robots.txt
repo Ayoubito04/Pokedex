@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pokedex-934e-git-master-ayoubs-projects-8755d914.vercel.app/sitemap.xml
