@@ -7,6 +7,8 @@ import PokeCard from './components/PokeCard/PokeCard';
 import { TeamProvider } from './context/TeamContext';
 import MyTeam from './components/MyTeam/MyTeam';
 import RegionMap from './components/RegionMap/RegionMap';
+import RotomChat from './components/RotomChat/RotomChat';
+import BattleArena from './components/BattleArena/BattleArena';
 
 function App() {
   return (
@@ -20,8 +22,11 @@ function App() {
               <Route path="/pokemon/:id" element={<PokeCard />} />
               <Route path="/team" element={<MyTeam />} />
               <Route path="/map" element={<RegionMap />} />
+              <Route path="/battle" element={<BattleArena />} />
             </Routes>
           </div>
+          {/* Rotom Chat is global, available on all pages */}
+          <RotomChat />
         </div>
       </Router>
     </TeamProvider>

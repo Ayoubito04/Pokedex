@@ -29,7 +29,12 @@ const Header = () => {
                     </li>
                     <li>
                         <button className="tech-btn" onClick={() => navigate('/map')}>
-                            Mapa Regional
+                            Mapa
+                        </button>
+                    </li>
+                    <li>
+                        <button className="tech-btn" style={{borderColor: '#FF5252', color: '#FF5252'}} onClick={() => navigate('/battle')}>
+                            ⚔️ Combate
                         </button>
                     </li>
                 </ul>
